@@ -54,4 +54,13 @@ ___________________________
 */ 
 // Your code should go here:
 
+drinks = [
+  {name: "lemonade", price: 50},
+  {name: "lime", price: 10}
+]
+
+console.log("Before sorting ", drinks);
+
+console.log("After sorting ", drinks.sort((a, b)=>(a.price > b.price)?1:-1));
+//Is there a need to re-invent the sorting algorithm?
 
