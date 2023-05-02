@@ -19,15 +19,17 @@ The script has several functions, each with a specific purpose:
 ### How to Use
 
 To use the script: 
+
     - You first need to give executable permission to it. You can do that by using the chmod command. 
     - Then, simply run the file in your terminal with ./RONV 'grep pattern' 'testing application'.
     - For example:
-        - RONV '.js' 'nodemon'
-            - This will run RONV and only select files with extension .js and the application to execute this selected files will be nodemon
-        - RONV '[E].py' 'python'
-            - This will run RONV and only select files with  '[E}.py' at the end of their name and the application that will execute the file with python shell.
+    - RONV '.js' 'nodemon'
+    - This will run RONV and only select files with extension .js and the application to execute this selected files will be nodemon
+    - RONV '[E].py' 'python'
+    - This will run RONV and only select files with  '[E}.py' at the end of their name and the application that will execute the file with python shell.
     - After running, the script will prompt the user to select a file to work on. 
     - Once selected, the user can modify, complete, test, or continue working on the file as needed using the menus presented.
+
 ### Additional Information
 
     - The script uses git to track changes and progress, so it is recommended to have git installed and set up before using.
@@ -37,8 +39,7 @@ To use the script:
     - Also, RONV only uses vim as editor for editing the files. So, it is recommended to have vim installed and set up before using.
 
 # How the problems were scraped from Edabit.com:
-
-[![Alternate Text](./thumb.png)](./scriptScraper.mp4 "Hello")
+![thumbnail](./thumb.png)
 
 To scrape the problems from Edabit.com, a JavaScript was created to run in the browser's console. This script was designed to scrape and save the problem statements in a format that is both portable and does not require separate files for the answers. Instead, the answers could be written directly in the same file as the problem statement and tested within the script. Additionally, the problem statements were saved as comments within the file. This approach was chosen to minimize the need for additional files and make the problems more accessible for learners.
 
