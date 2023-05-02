@@ -1,0 +1,98 @@
+#!/bin/bash
+IFS=$'\n'
+
+menu () {
+echo $'\n'"Is this file"$'\n'"modified[mM]"$'\n'"complete[cC]"$'\n'"untouched[uU]"$'\n'"open again[oO]"$'\n'"test it[tT]"$'\n'"quit[qQ]?"
+read -rsn1 response
+if [[ $response = "m" || $response = "M" ]]; then
+mv $1 $(echo  !$1)
+git rm $1
+git add $(echo  !$1)
+git commit -m "$1 modified"
+tagOrNoTag $(echo "!$1")
+menu2 "!$1" $2
+elif [[ $response = "c" || $response = "C" ]]; then
+mv $1 $(echo [99999${1:1:${#1}})
+git rm $1
+git add $(echo [99999${1:1:${#1}})
+git commit -m  $'\n'"$1 completed"
+tagOrNoTag $(echo "[99999${1:1:${#1}}") 
+echo 
+elif [[ $response = "u" || $response = "U" ]]; then
+echo $'\n'"You have not modified the file"
+menu2 $1 $2
+elif [[ $response = "o" || $response = "O" ]]; then
+vim $1
+menu $1 $2
+elif [[ $response = "t" || $response = "T" ]]; then
+echo $'\n'
+$2 $1 --exitcrash
+echo $'\n'"Tested"
+echo
+menu $1 $2
+elif [[ $response = "q" || $response = "Q" ]]; then
+echo $'\n'"Quitted"
+exit 1
+else
+echo $'\n'"Invalid Input"
+echo
+menu $1 $2
+fi 
+}
+
+menu2 () {
+echo $'\n'"So you want to "$'\n'"continue[cC]"$'\n'"open again[oO]"$'\n'"test it[tT]"$'\n'"quit[qQ]?"
+read -rsn1 response
+if [[ $response = "q" || $response = "Q" ]]; then
+echo $'\n'"Quitted"
+exit 1
+elif [[ $response = "o" || $response = "O" ]]; then
+vim $1
+menu $1 $2
+elif [[ $response = "t" || $response = "T" ]]; then
+echo $'\n'
+$2 $1 --exitcrash
+echo $'\n'"Tested"
+menu2 $1 $2
+echo $'\n'
+elif [[ $response = "c" || $response = "C" ]]; then
+echo $'\n'"Next..."
+else
+echo $'\n'"Invalid Input"
+fi 
+}
+
+
+tagOrNoTag () {
+read -rsn1 -p "Do you want to add a tag to this file[Yy or Nn]: " response2
+if [[ $response2 = "Y" || $response2 = "y" ]]; then
+read -p $'\n'"Tag(default=filename): " TAG
+if [[ $TAG = "" ]]; then
+git tag -a -m "$1 commit with no description provided" $1
+else
+git tag -a -m "$TAG with file $1" $TAG
+fi
+elif [[ $response2 = "N" || $response2 = "n" ]]; then
+echo $'\n'"You did not put a tag on this file commit"
+else
+echo $'\n'"Invalid Input"
+tagOrNoTag $1
+fi
+}
+
+
+promptFile () {
+echo $i | grep --color -F $i
+read -rsn1 -p "[Yy] to open the file or (any key) to continue: " response
+if [[ $response = "Y" || $response = "y" ]]; then
+echo $'\n'"Yes opened the file $1"
+vim $1
+menu $1 $2
+else
+echo $'\n'"You did not opened the file"
+fi
+}
+
+for i in $(ls -v1 | grep -F $1);
+do clear && promptFile $i $2;
+done
