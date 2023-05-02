@@ -18,14 +18,16 @@ The script has several functions, each with a specific purpose:
 
 ### How to Use
 
+
+
 To use the script: 
     - You first need to give executable permission to it. You can do that by using the chmod command. 
     - Then, simply run the file in your terminal with ./RONV 'grep pattern' 'testing application'.
     - For example:
-        - RONV '.js' 'nodemon'
-            - This will run RONV and only select files with extension .js and the application to execute this selected files will be nodemon
-        - RONV '[E].py' 'python'
-            - This will run RONV and only select files with  '[E}.py' at the end of their name and the application that will execute the file with python shell.
+    - RONV '.js' 'nodemon'
+    - This will run RONV and only select files with extension .js and the application to execute this selected files will be nodemon
+    - RONV '[E].py' 'python'
+    - This will run RONV and only select files with  '[E}.py' at the end of their name and the application that will execute the file with python shell.
     - After running, the script will prompt the user to select a file to work on. 
     - Once selected, the user can modify, complete, test, or continue working on the file as needed using the menus presented.
 ### Additional Information
