@@ -37,8 +37,7 @@ To use the script:
     - Also, RONV only uses vim as editor for editing the files. So, it is recommended to have vim installed and set up before using.
 
 # How the problems were scraped from Edabit.com:
-
-<video src='https://imgur.com/a/yAsnqJC' width=180/> </video>
+![thumbnail](./thumb.png)
 
 To scrape the problems from Edabit.com, a JavaScript was created to run in the browser's console. This script was designed to scrape and save the problem statements in a format that is both portable and does not require separate files for the answers. Instead, the answers could be written directly in the same file as the problem statement and tested within the script. Additionally, the problem statements were saved as comments within the file. This approach was chosen to minimize the need for additional files and make the problems more accessible for learners.
 
